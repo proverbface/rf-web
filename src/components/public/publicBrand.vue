@@ -26,7 +26,7 @@
           <span v-if="lastInteraction" class="md-subheading"
             >{{ lastInteraction.identifiedItemId }}
             <br />
-            Views today: 400
+            <span v-if="item.viewCount">Views today: {{ item.viewCount }}</span>
           </span>
         </div>
         <div

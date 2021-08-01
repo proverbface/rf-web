@@ -1,5 +1,6 @@
-import { exchangeApi, taskApi, thingApi } from '@/api/http/api';
 import Vue from 'vue';
+import { thingApi } from '@/api/http/api';
+import { itemApi } from '@/api/http/items.api';
 
 interface IState {
   code: string | null;
@@ -76,20 +77,28 @@ const actions = {
     return new Promise(async (resolve, reject) => {
       let organizationId = payload ? payload.organizationId : null;
       let interactionId = payload ? payload.interactionId : null;
-      let publicInfo: any | null = null;
+      let publicInfo: any = null;
 
       try {
-        await thingApi
-          .getPublic(organizationId, interactionId)
-          .then((response: any) => {
-            publicInfo = response.data;
-            context.commit('SET_API_ON');
-            context.commit('SET_PUBLIC_INFO', publicInfo);
-          })
-          .catch(error => {
-            context.commit('SET_API_DOWN');
-            console.log(error);
-          });
+        const result = await thingApi.getPublic(organizationId, interactionId);
+        publicInfo = result.data;
+
+        if (publicInfo.interactions && publicInfo.interactions.length > 0) {
+          const itemId = publicInfo.interactions[0].identifiedItemId;
+
+          if (itemId) {
+            try {
+              const itemResult = await itemApi.getItem(itemId);
+              publicInfo.info.viewCount =
+                itemResult != null ? itemResult.viewCount : 0;
+            } catch (error) {
+              console.error('Could not fetch view count', error);
+            }
+          }
+        }
+
+        context.commit('SET_API_ON');
+        context.commit('SET_PUBLIC_INFO', publicInfo);
       } catch (err) {
         console.log(err);
         context.commit('SET_API_DOWN');
