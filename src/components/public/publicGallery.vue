@@ -17,8 +17,8 @@ import Lingallery from 'lingallery';
 export default {
   data() {
     return {
-      width: '100%',
-      height: 400,
+      width: 760,
+      height: 500,
     };
   },
   props: {
