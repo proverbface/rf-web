@@ -1,0 +1,14 @@
+@import "@/assets/scss/abstracts/_mixins.scss";
+
+.public-ingredient {
+  margin: 0 24px; 
+  margin-top: 25px;
+
+  .public-ingredient-card {
+    border-radius: 10px;
+  }
+
+  .public-ingredient-card-content{
+    white-space: pre-line;
+  }
+}

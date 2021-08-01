@@ -1,0 +1,35 @@
+@import "@/assets/scss/abstracts/_mixins.scss";
+
+.public-certification {
+  margin: 0 24px;
+  margin-top: 25px;
+
+  .swiper-container {
+    padding-bottom: 50px;
+  }
+  .swiper-slide {
+    display: flex;
+  }
+  .public-certification-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .public-certification-card {
+    text-align: center;
+    border-radius: 10px;
+    margin: 1px;
+  }
+  .public-certification-image {
+    max-width: 110px;
+    max-height: 70px;
+    object-fit: contain;
+    object-position: 50% 50%;
+  }
+  .public-certification-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: black;
+    margin-top: 10px;
+  }
+}
+

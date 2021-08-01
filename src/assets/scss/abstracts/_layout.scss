@@ -1,0 +1,331 @@
+@import "themes";
+@import "../fonts/material_icons_outlined";
+@import "~@/assets/fonts/rfider-icons/rfider-icons";
+
+$animationDuration: 0.5s; // specify animation duration. Default value: 1s
+// @import "~vue2-animate/src/sass/vue2-animate.scss";
+
+.rfider-shadow{
+  box-shadow: 0 5px 18px 0 rgba(0, 0, 0, 0.15);
+}
+
+.width-based-on-sidebar{
+  $menuWidthClosed: 50px;
+  $menuWidthOpened: 320px;
+
+  @media (min-width: $screen-nav-breakpoint){
+    will-change: width, left;
+
+    left: $menuWidthClosed !important;
+    width: calc(100vw - #{$menuWidthClosed}) !important;
+    
+    .rfider-nav-opened & {
+      left: $menuWidthOpened !important;
+      width: calc(100vw - #{$menuWidthOpened}) !important;
+    }
+  }
+}
+
+.layout--body-height{
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding-top: $rfider-header-height;
+    overflow: hidden;
+    
+    > div,
+    > section{
+        height: 100%;
+    }
+}
+
+.flex--fill-height{
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    
+    > .flex--fill-height-expand{
+      flex: 1 1 auto;
+      display: flex;
+      overflow: hidden;
+      height: 100%;
+      > div, > section{
+        width: 100%;
+      }
+    }
+}
+
+
+
+.md-layout{
+  .md-layout-item--no-grow{
+    flex-grow: 0;
+  }
+
+  &.md-gutter,
+  &.md-gutter-md,
+  &.md-gutter-sm {
+    &.md-gutter-spaced {
+      margin-left: 0;
+      margin-right: 0;
+
+      >.md-layout-item.md-layout-item--unpadded{
+        padding-left: 0;
+        &:not(:last-child){
+          padding-right: 0;
+        }
+      }
+    }
+  }
+
+  &.md-gutter-xs {
+    margin-right: -1px;
+    margin-left: -1px;
+    >.md-layout-item{
+      padding-right: 1px;
+      padding-left: 1px;
+    }
+  }
+
+  &.md-gutter-sm {
+    margin-right: -5px;
+    margin-left: -5px;
+    >.md-layout-item{
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+  }
+
+  &.md-gutter-md {
+    margin-right: -10px;
+    margin-left: -10px;
+    >.md-layout-item{
+      padding-right: 10px;
+      padding-left: 10px;
+    }
+  }
+}
+
+
+.md-icon-round{
+  border-radius: 50%;
+  border: 1px solid $black;
+  > .md-icon{
+    margin: .2em;
+  }
+}
+
+.md-icon{
+  &.md-icon-dot{
+    &::before{
+      content: "\2B24";
+      top: -.4em;
+      position: relative;
+    }
+  }
+
+  &.md-size-xsmall {
+    width: 6px;
+    min-width: 6px;
+    height: 6px;
+    font-size: 6px !important;
+  }
+
+  &.md-size-small {
+    width: 14px;
+    min-width: 14px;
+    height: 14px;
+    font-size: 14px !important;
+  }
+
+  &.md-size-1-5x {
+    width: 36px;
+    min-width: 36px;
+    height: 36px;
+    font-size: 36px !important;
+  }
+}
+
+.clearfix{
+  @extend %clearfix;
+}
+
+.line-height-1{
+  line-height: 1;
+}
+
+.float-left{
+    float: left;
+}
+
+.float-right{
+    float: right;
+}
+
+.text-align--left{
+    text-align: left;
+}
+
+.text-align--right{
+    text-align: right;
+}
+
+.text-align--center{
+    text-align: center;
+}
+
+.rfider-status-0-font{
+  color: nth($rfider-status-colors, 1) !important;
+}
+.rfider-status-1-font{
+  color: nth($rfider-status-colors, 2) !important;
+}
+.rfider-status-2-font{
+  color: nth($rfider-status-colors, 3) !important;
+}
+
+.rfider-status-0-color{
+  background-color: nth($rfider-status-colors, 1);
+}
+.rfider-status-1-color{
+  background-color: nth($rfider-status-colors, 2);
+}
+.rfider-status-2-color{
+  background-color: nth($rfider-status-colors, 3);
+}
+
+// Modal styles
+.modal {
+    &__header {
+        @include set-font-pattern($gray-darker, $font-size-h3, $font-weight-bold);
+        &--left{
+            text-align: left;
+        }
+    }
+}
+
+.modal-body--padding{
+    padding: 16px;
+}
+
+// end Modal styles
+
+.md-menu-content{
+  max-height: 60vh;
+}
+
+.md-badge-content.count{
+  .md-badge{
+    right: 0;
+    top: 0;
+    transform: translate(100%, -50%);
+    background-color: $brand-primary !important;
+  }
+
+  &.badge-hidden .md-badge{
+    display: none;
+  }
+}
+
+.md-badge{
+  &, &.md-dense{
+    width: auto;
+  }
+  
+  border-radius:11px;
+  min-width: 22px;
+  padding: 5px;
+  &.md-dense{
+    border-radius:9px;
+    min-width: 18px;
+    padding: 3px;
+  }
+}
+
+.md-badge-content.count .md-badge{
+  right: 0;
+  top: 0;
+  transform: translate(100%, -50%);
+  background-color: $brand-primary !important;
+}
+
+// Vue Recycle Scroller styles
+.vue-recycle-scroller {
+    position: relative;
+
+    &.vue-recycle-scroller.direction-vertical:not(.page-mode) {
+      overflow-y: auto;
+    }
+    
+    &.vue-recycle-scroller.direction-horizontal:not(.page-mode) {
+      overflow-x: auto;
+    }
+    
+    &.vue-recycle-scroller.direction-horizontal {
+      display: flex;
+    }
+    
+    .vue-recycle-scroller__slot {
+      flex: auto 0 0;
+    }
+    
+    .vue-recycle-scroller__item-wrapper {
+      flex: 1;
+      box-sizing: border-box;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    &.vue-recycle-scroller.ready .vue-recycle-scroller__item-view {
+      position: absolute;
+      top: 0;
+      left: 0;
+      will-change: transform;
+    }
+    
+    &.vue-recycle-scroller.direction-horizontal .vue-recycle-scroller__item-wrapper {
+      height: 100%;
+    }
+    
+    &.vue-recycle-scroller.ready.direction-vertical .vue-recycle-scroller__item-view {
+      width: 100%;
+    }
+    
+    &.vue-recycle-scroller.ready.direction-horizontal .vue-recycle-scroller__item-view {
+      height: 100%;
+    }
+    
+    .resize-observer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100%;
+      height: 100%;
+      border: none;
+      background-color: transparent;
+      pointer-events: none;
+      display: block;
+      overflow: hidden;
+      opacity: 0;
+    }
+    
+    .resize-observer object {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+  }
+  // end Vue Recycle Scroller styles

@@ -1,0 +1,59 @@
+@import "@/assets/scss/abstracts/_mixins.scss";
+
+.public-button-bg {
+  z-index: 2;
+  bottom: 0;
+  position: fixed;
+  background-color: white;
+  height: 80px;
+  max-width: 800px;
+  width: 100%;
+}
+.public-button {
+  top: -20px;
+  position: relative;
+}
+.public-button-image {
+  border-radius: 15%;
+  width: 72px;
+  height: 72px;
+  margin: 0 10px;
+}
+
+@media (min-width: 600px) {
+  .public-button {
+    top: -30px;
+  }
+  .public-button-image {
+    width: 90px !important;
+    height: 90px !important;
+  }
+  .public-button-thumb-bg {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+.public-button-image {
+  border-radius: 15%;
+  width: 72px;
+  height: 72px;
+}
+
+.public-button-thumb {
+  position: relative;
+  border-radius: 15%;
+}
+
+.public-button-thumb-bg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -50%);
+}
+
+.public-button-shadow {
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.5);
+}

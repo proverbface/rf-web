@@ -1,0 +1,289 @@
+@import '@/assets/scss/abstracts/_mixins.scss';
+
+//======== EXTENDS ========//
+
+%align-avatar{
+  @include column-width(50px);
+}
+
+%setting-icons{
+  border-radius: 50%;
+  margin: 5px;
+  @include set-icons-color($gray,$btn-icon-size-medium);
+}
+
+%setting-interactions-borders{
+  padding: 8px 15px;
+  @extend %setting-standard-shadow;
+}
+
+%setting-standard-shadow{
+  box-shadow: 0 3px 1px -2px rgba(90, 90, 90, 0.2), 0 2px 2px 0 rgba(90, 90, 90,.14), 0 1px 5px 0 rgba(90, 90, 90,.12);
+}
+
+%setting-standard-hover{
+  .vue-recycle-scroller__item-view.hover &{
+    @include shadow-navbar-color($gray-lighter);
+  }
+}
+
+//======== MAIN ========//
+
+$lineLeftDistance: 32px;
+
+.box-interactions{
+
+  .interaction-card{
+    z-index:1;
+    border: 1px solid $legend-border-color;
+    border-radius: 8px;
+    @extend %setting-standard-hover;
+  }
+
+  //======== START TIMELINE ========//
+
+  .start-timeline {
+    text-transform: uppercase;
+    @include set-font-pattern($gray-darker,$font-size-small,$font-weight-bold);
+    position: relative;
+    padding-left: 37px;
+    &:before{
+      content:'';
+      height: 11px;
+      width: 11px;
+      border: 1px solid #BFC5D2;
+      background-color: $gray-light;
+      border-radius: 50%;
+      left: 28px;
+      bottom: 0;
+      z-index: 5;
+      position: absolute;
+    }
+    span:first-child{
+      display: inline-block;
+      transform: translateX(-50%);
+      padding-bottom: 15px;
+    }
+  }
+
+  //======== USER INTERACTION ========//
+
+  .md-card-plain{
+    $avatarSize: 32px;
+    //padding-bottom: $lineLeftDistance;
+    @include timeline($legend-border-color, $lineLeftDistance, 2px);
+    margin: 0;
+
+    .user-data{
+      margin: 10px;
+      margin-left: 17px;
+      padding-top: 10px;
+      position: relative;
+
+      .md-layout-item:first-child{
+        @extend %align-avatar;
+      }
+
+      .user-avatar{
+        width: $avatarSize;
+        border-radius: 50%;
+        height: $avatarSize;
+      }
+    
+      .user-info{
+        @include set-font-pattern($gray,$font-size-small,$font-weight-default);
+
+        .user-name {
+          color: $black;
+        }
+      
+        .date-interaction{
+          color: $gray;
+        }
+      }
+    }
+  }
+
+  //======== HEADER INTERACTION ========//
+
+  .header-interactions{
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+    border-bottom: 1px solid $legend-border-color;
+    z-index: 2;
+    @extend %setting-interactions-borders;
+
+    .btn-expand{
+      float: right;
+    }
+
+    .md-layout-item:first-child{
+      @extend %align-avatar;
+    }
+
+    .title-interaction{
+      @include set-font-pattern($black-color, $font-size-navbar,$font-weight-bold);
+    }
+    .avatar{
+      position: relative;
+      display: inline-block;
+
+      img{
+        width: 32px;
+        height: 32px;
+        border-radius: 3px;
+      }
+      span{
+        $size: 20px;
+        position: absolute;
+        border: 1px solid $white-color;
+        right: -($size / 2);
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 9px;
+        z-index: 1;
+        width: $size;
+        height: $size;
+        border-radius: $size / 2;
+      }
+    }
+  }
+
+  //======== STEP-FLOW INTERACTION ========//
+
+  .interaction-card .stepflow-interactions{
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: $white-color !important;
+    padding: 21px 21px;
+    z-index: 5;
+    border-top: 0;
+
+    .steps{
+      position: relative;
+      min-height: 50px;
+
+      .md-layout-item:first-child{
+        @include column-width(44px);
+      }
+
+      &:before {
+        top: 32px;
+        bottom: 0;
+        position: absolute;
+        width: 2px;
+        background-color: $legend-border-color;
+        left: 11px;
+        content: '';
+      }
+
+      .step-title {
+        @include set-font-pattern($gray-darker,$font-size-base,$font-weight-bold);
+      }
+
+      .step-status-0 i,
+      .step-status-1 i,
+      .step-status-2 i{
+        @extend %setting-icons;
+      }
+
+      .step-status-1 i,
+      .step-status-2 i{
+        text-indent: -999em;
+        margin-top:10px;
+      }
+
+      .step-status-0 i{
+        margin-left: 3px;
+        margin-top: 8px;
+        color: $gray-light !important;  
+      }
+
+      .step-status-1 i{
+        background-color: $gray-light;
+        border: 1px solid $gray-light;
+      }
+      .step-status-2 i{
+        background-color: $white;
+        border: 1px solid $gray-light;
+      }
+      
+      .step-title:not(.step-description){
+          padding-top: 8px;
+      }
+    }
+
+    .attaches{
+      float: right;
+      span{
+        $size: 18px;
+        position: absolute;
+        right: -($size / 3);
+        transform: translateY(-50%);
+        font-size: $font-size-small;
+        background: $brand-primary;
+        z-index: 1;
+        width: $size;
+        height: $size;
+        border-radius: $size / 2;
+        color: $white-color;
+        height: $size;
+        text-align: center;
+        line-height: $size;
+      }
+    }
+
+    .step-changed {
+      box-sizing: border-box;
+      border: 1px solid $legend-border-color;
+      border-radius: 10px;
+      text-align: left;
+      min-height: 27px;
+      flex: 0 1 44px;
+      padding: 4px 0 0 44px;
+      @include set-font-pattern($black,$font-size-small,$font-weight-default);
+
+      &:not(:last-child){
+        border-bottom: none;
+      }
+    }
+  }
+
+  //======== FOOTER INTERACTION ========//
+
+  .interaction-card .footer-interactions{
+    background-color: $brand-primary-light-dark;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top: 0;
+    z-index: 5;
+    @extend %setting-interactions-borders;
+
+    .dropdown {
+      button{
+        @include set-font-pattern($gray-darker, $font-size-small,$font-weight-default);
+      }
+
+      .dropdown-menu {
+        li a{
+          @include set-font-pattern($gray-darker, $font-size-small,$font-weight-default);
+          &:hover{
+            color: $white-color !important;
+          }
+        }
+      }
+    }
+
+    .whether-info {		
+      @include set-font-pattern($black, $font-size-small,$font-weight-default);
+      text-align: right; 
+      padding: 0;
+      span{
+        color: $gray-color !important;
+      }
+
+    }
+  }  
+}

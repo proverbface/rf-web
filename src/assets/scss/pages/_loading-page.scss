@@ -1,0 +1,17 @@
+@import "@/assets/scss/abstracts/_mixins.scss";
+
+.loading-page {
+  height: 100vh;
+  width: 100%;
+  text-align: center;
+  transform: translateY(20%);
+
+  .loading-page-image {
+    width: 200px;
+  }
+  .loading-page-message {
+    margin-top: 30px;
+    color: $brand-primary;
+    font-size: $font-size-large;
+  }
+}

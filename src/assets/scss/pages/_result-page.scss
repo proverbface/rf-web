@@ -1,0 +1,40 @@
+@import "@/assets/scss/abstracts/_mixins.scss";
+
+.result-page {
+  height: 100vh;
+  width: 100%;
+  text-align: center;
+
+  .result-page-top {
+    width: 100%;
+    height: 100px;
+    padding-top: 10px;
+    padding-left: 50px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: left;
+  }
+
+  .result-page-gradient0 {
+    width: 100%;
+    height: 200px;
+    background-image: linear-gradient(to bottom, #f8d5d9, white);
+  }
+  .result-page-gradient1 {
+    width: 100%;
+    height: 200px;
+    background-image: linear-gradient(to bottom, #ccedb2, white);
+  }
+  .result-page-gradient2 {
+    width: 100%;
+    height: 200px;
+    background-image: linear-gradient(to bottom, #f6ddb2, #f7fbff);
+  }
+  .result-page-image {
+    margin-top: -100px;
+  }
+  .result-page-message {
+    font-size: $mdb-btn-fab-font-size;
+    margin: 0 5%;
+  }
+}

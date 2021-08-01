@@ -1,0 +1,155 @@
+@import 'variables.scss';
+@import '@/assets/scss/md/_shadows.scss';
+
+//======== MIXINS ========//
+@mixin for-md-small {
+    @media (min-width: $md-size-small) { @content; }
+}
+@mixin for-md-medium {
+    @media (min-width: $md-size-medium) { @content; }
+}
+@mixin for-md-large {
+    @media (min-width: $md-size-large) { @content; }
+}
+@mixin for-md-xlarge {
+    @media (min-width: $md-size-xlarge) { @content; }
+}
+
+@mixin for-phone {
+    @media (min-width: $screen-phone) { @content; }
+}
+@mixin for-tablet {
+    @media (min-width: $screen-tablet) { @content; }
+}
+@mixin for-desktop {
+    @media (min-width: $screen-desktop) { @content; }
+}
+@mixin for-lg-desktop {
+    @media (min-width: $screen-lg-desktop) { @content; }
+}
+@mixin for-big-desktop {
+    @media (min-width: $screen-big-desktop) { @content; }
+}
+@mixin arrow-caret ($color){
+    /deep/ .caret{
+      cursor: pointer;
+      display: inline-block;
+      width: 0;
+      height: 0;
+      vertical-align: middle;
+      border-top: 4px dashed;
+      border-top: 4px solid\9;
+      border-right: 4px solid transparent;
+      border-left: 4px solid transparent;
+      position: relative;
+      color: $color !important;
+    }
+}
+@mixin set-icons-color ($color,$size){
+    &,
+    /deep/ span,
+    /deep/ .md-icon{
+        color: $color !important;
+        font-size: $size !important;
+    }
+}
+@mixin set-font-pattern ($color, $size, $font-weight){
+    &,
+    /deep/ p{
+        color: $color !important;
+        font-size: $size !important;
+        font-weight: $font-weight !important;
+    }
+}
+@mixin bg-strike($color) {
+
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap; 
+
+    > p {
+
+        position: relative;
+        display: inline-block;
+
+        &:before,
+        &:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            width: 9999px;
+            height: 1px;
+            background: $color;
+        }
+
+        &:before {
+            right: 100%;
+            margin-right: 15px;
+        }
+
+        &:after {
+            left: 100%;
+            margin-left: 15px;
+        }
+    }
+}
+@mixin timeline ($color, $leftValue, $width) {
+    &:before {
+        top: 0;
+        bottom: 0;
+        position: absolute;
+        width: $width;
+        height: 100%;
+        background-color: $color;
+        left: $leftValue;
+        content: '';
+    }
+}
+
+@mixin column-width ($width) {
+    min-width: $width;
+    max-width: $width;
+    flex: 0 1 $width;
+}
+
+//======== EXTENDS ========//
+%clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+%active-hover-focus {
+    &:hover,
+    &:focus{
+        background-color: $brand-primary-light !important;
+        @include shadow-navbar-color($brand-primary);
+    }
+    &:hover .md-icon,
+    &:focus .md-icon,
+    &:hover a,
+    &:focus a,
+    &:hover p,
+    &:focus p{
+        color: $brand-primary !important;
+    }
+}
+
+%disable-hover-focus {
+    &:hover,
+    &:focus{
+        background-color: transparent !important;
+        -webkit-tap-highlight-color: transparent !important;
+        box-shadow: none;
+    }
+    &:hover .md-icon,
+    &:focus .md-icon,
+    &:hover p,
+    &:focus p{
+        color: $brand-primary !important;
+    }
+}
+
